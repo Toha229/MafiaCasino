@@ -5,9 +5,11 @@ using DAL.Validation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace MafiaCasinoWeb.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
 	{
         private readonly UserService _userService;
@@ -17,6 +19,7 @@ namespace MafiaCasinoWeb.Controllers
             _userService = userService;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
@@ -107,5 +110,17 @@ namespace MafiaCasinoWeb.Controllers
             return RedirectToAction("Index", "Admin");
         }
 
-    }
+
+		public async Task<IActionResult> Profile()
+		{
+
+			var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+			var result = await _userService.GetUserProfileAsync(userId);
+			if (result.Success)
+			{
+				return View(result.Payload);
+			}
+			return RedirectToAction("Index", "Home");
+		}
+	}
 }

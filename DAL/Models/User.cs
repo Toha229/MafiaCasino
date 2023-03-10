@@ -9,13 +9,15 @@ namespace DAL.Models
 {
     public class User : IdentityUser
     {
+        public virtual string? Avatar { get; set; }
         public virtual int? Cash { get; set; }
-        public virtual int? HighestBet { get; set; }
+		public virtual int? HighestBet { get; set; }
         public virtual int? HighestWin { get; set; }
         public virtual int? TotalBetsCount { get; set; }
 
         public void Deffault()
         {
+            Avatar = "/SlotImages/ConstructtheMobster.png";
             Cash = 0;
 			HighestBet = 0;
 			HighestWin = 0;

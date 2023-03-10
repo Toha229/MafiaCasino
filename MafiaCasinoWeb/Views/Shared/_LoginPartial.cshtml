@@ -18,7 +18,7 @@
 	<div class="dropdown-menu hide" style="position: absolute;inset: 0px 0px auto auto;margin: 0px;transform: translate(0px, 44px);text-align: right;" data-popper-placement="bottom-start" data-bs-popper="none">
 		@if (SignInManager.IsSignedIn(User))
 		{
-			<a class="dropdown-item" href="#">View Profile</a>
+			<a class="dropdown-item" asp-controller="Home" asp-action="Profile">View Profile</a>
 		}
 		<a class="dropdown-item" href="#">Settings</a>
 		@if (SignInManager.IsSignedIn(User))

@@ -26,18 +26,40 @@ namespace BusinessLogic.Services
             _mapper = mapper;
             _userManager = userManager;
             _signInManager = signInManager;
-        }
+		}
 
-        public async Task<List<UserVM>> GetRichesAsync(int usersCount)
-        {
-            using(var _context = new AppDbContext())
-            {
-                var res = await _context.Users.OrderByDescending(u => u.Cash).Select(u => _mapper.Map<User, UserVM>(u)).Take(usersCount).ToListAsync();
-                return res;
-            }
-        }
+		public async Task<List<UserVM>> GetRichesAsync(int usersCount)
+		{
+			using (var _context = new AppDbContext())
+			{
+				var res = await _context.Users.OrderByDescending(u => u.Cash).Select(u => _mapper.Map<User, UserVM>(u)).Take(usersCount).ToListAsync();
+				return res;
+			}
+		}
 
-        public async Task<ServiceResponse> LoginUserAsync(LoginUserVM model)
+		public async Task<ServiceResponse> GetUserProfileAsync(string userId)
+		{
+			var user = await _userManager.FindByIdAsync(userId);
+			if (user == null)
+			{
+				return new ServiceResponse
+				{
+					Success = false,
+					Message = "User not found."
+				};
+			}
+
+			var mappedUder = _mapper.Map<User, UserProfileVM>(user);
+
+			return new ServiceResponse
+			{
+				Success = true,
+				Message = "User profile loaded.",
+				Payload = mappedUder
+			};
+		}
+
+		public async Task<ServiceResponse> LoginUserAsync(LoginUserVM model)
         {
             User user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
