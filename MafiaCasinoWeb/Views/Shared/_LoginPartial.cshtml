@@ -1,0 +1,41 @@
+﻿@using DAL;
+@using Microsoft.AspNetCore.Identity
+@using DAL.Models;
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@{
+	User user = null;
+	if (SignInManager.IsSignedIn(User))
+	{
+		user = await UserManager.GetUserAsync(User);
+	}
+}
+
+<li class="nav-item dropdown" style="width:100%; text-align: right;">
+	<a class="nav-link dropdown-toggle hide" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true" style="/* margin: auto; */">@(SignInManager.IsSignedIn(User) ? @UserManager.GetUserName(User) : "Profile")</a>
+	<div class="dropdown-menu hide" style="position: absolute;inset: 0px 0px auto auto;margin: 0px;transform: translate(0px, 44px);text-align: right;" data-popper-placement="bottom-start" data-bs-popper="none">
+		@if (SignInManager.IsSignedIn(User))
+		{
+			<a class="dropdown-item" href="#">View Profile</a>
+		}
+		<a class="dropdown-item" href="#">Settings</a>
+		@if (SignInManager.IsSignedIn(User))
+		{
+			<a class="dropdown-item" href="#">Replenish</a>
+		}
+		<div class="dropdown-divider"></div>
+		@if (SignInManager.IsSignedIn(User))
+		{
+			<a class="dropdown-item" asp-controller="Home" asp-action="Logout">Logout</a>
+			<div class="dropdown-divider"></div>
+			<p style="margin: 0; padding: 0.25rem 1rem;">Your Cash: @user?.Cash&#8372;</p>
+		}
+		else
+		{
+			<a class="dropdown-item" asp-controller="Home" asp-action="SignIn">Sign In</a>
+			<a class="dropdown-item" asp-controller="Home" asp-action="SignUp">Sign Up</a>
+		}
+	</div>
+</li>

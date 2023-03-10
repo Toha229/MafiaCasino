@@ -1,0 +1,98 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.slots {
+    min-height: 75vh;
+    width: 60%;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: gray;
+}
+
+.slot-container {
+    display: inline-flex;
+    margin: 3px;
+    width: 205px;
+    height: 205px;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.slot-prev {
+    position: relative;
+    border-radius: 10px;
+    width: 200px;
+    height: 200px;
+    background-color: dimgray;
+    background-size: cover;
+    filter: contrast(1);
+    transition: width 0.2s, height 0.2s, filter 0.1s;
+}
+
+.slot-prev:hover {
+    width: 205px;
+    height: 205px;
+    filter: contrast(0.6);
+}
+
+.slot-name {
+    position: absolute;
+    bottom: 0;
+    padding-left: 5%;
+    font-weight: bold;
+    font-size: 25px;
+    text-shadow: 1px 1px 1px #ffffff, -1px 1px 1px #ffffff, 1px -1px 1px #ffffff, -1px -1px 1px #ffffff;
+}
+
+.slot-info {
+    min-height: 50vh;
+    width: 35%;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: gray;
+    display: inline-block;
+}
+
+.slot-screen {
+    width: 100%;
+    background-size: cover;
+}
+
+.slot-name-prev {
+    color: white;
+    /*text-shadow: 1px 1px 1px #000000, -1px 1px 1px #000000, 1px -1px 1px #000000, -1px -1px 1px #000000;*/
+    /*text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);*/
+    /*    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000,
+        -2px -1px 0 #000, 2px -1px 0 #000, -2px 1px 0 #000, 2px 1px 0 #000,
+        -1px -2px 0 #000, 1px -2px 0 #000, -1px 2px 0 #000, 1px 2px 0 #000;*/
+    text-shadow: rgb(0, 0, 0) 3px 0px 0px, rgb(0, 0, 0) 2.83487px 0.981584px 0px, rgb(0, 0, 0) 2.35766px 1.85511px 0px,
+        rgb(0, 0, 0) 1.62091px 2.52441px 0px, rgb(0, 0, 0) 0.705713px 2.91581px 0px,
+        rgb(0, 0, 0) -0.287171px 2.98622px 0px, rgb(0, 0, 0) -1.24844px 2.72789px 0px,
+        rgb(0, 0, 0) -2.07227px 2.16926px 0px, rgb(0, 0, 0) -2.66798px 1.37182px 0px,
+        rgb(0, 0, 0) -2.96998px 0.42336px 0px, rgb(0, 0, 0) -2.94502px -0.571704px 0px,
+        rgb(0, 0, 0) -2.59586px -1.50383px 0px, rgb(0, 0, 0) -1.96093px -2.27041px 0px,
+        rgb(0, 0, 0) -1.11013px -2.78704px 0px, rgb(0, 0, 0) -0.137119px -2.99686px 0px,
+        rgb(0, 0, 0) 0.850987px -2.87677px 0px, rgb(0, 0, 0) 1.74541px -2.43999px 0px,
+        rgb(0, 0, 0) 2.44769px -1.73459px 0px, rgb(0, 0, 0) 2.88051px -0.838247px 0px;
+    text-align: center;
+}

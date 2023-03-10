@@ -1,0 +1,56 @@
+﻿@using Casino
+@using Microsoft.AspNetCore.Mvc.TagHelpers;
+@using global::Casino;
+
+@model List<SlotPreview>
+@{
+    ViewData["Title"] = "Slots";
+}
+<div class="text-center">
+    <h1 class="display-4">Slots</h1>
+</div>
+<div style="display: flex; justify-content: space-around;">
+    <div class="slots">
+        @foreach (var slot in Model)
+        {
+            <div class="slot-container">
+                <div onclick="javascript:RidirectDivClick('@slot.Action');" class="slot-prev" style="background-image: url('@slot.Image');">
+                    <p class="slot-name">@slot.Name</p>
+                    <div style="display: none;">@slot.PrevImage</div>
+                    <div style="display: none;">@slot.Description</div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="slot-info">
+        <h2 class="slot-name-prev"></h2>
+        <img class="slot-screen"/>
+        <div id="slot-desc"></div>
+    </div>
+</div>
+<script>
+
+const slotDesc = document.getElementById('slot-desc');
+const slotName = document.getElementsByClassName('slot-name-prev')[0];
+const slotScreen = document.getElementsByClassName("slot-screen")[0];
+const slotPrevs = document.getElementsByClassName("slot-prev");
+
+for (let i = 0; i < slotPrevs.length; i++) {
+    slotPrevs[i].addEventListener('mouseover', function(){ShowInfo(slotPrevs[i].children[0].textContent, slotPrevs[i].children[1].textContent, slotPrevs[i].children[2].textContent)});
+}
+
+// Add a "mouseover" event listener
+//myDiv.addEventListener('mouseover', );
+
+function ShowInfo(name, image, info){
+    slotName.textContent = name;
+    slotScreen.setAttribute("src", `${image}`);
+    slotDesc.innerHTML = info;
+}
+
+function RidirectDivClick(action)
+{
+    window.location.href = '/casino/' + action;
+}
+
+</script>

@@ -1,0 +1,34 @@
+﻿@using DAL.Models.VM;
+@using Microsoft.AspNetCore.Identity
+@using DAL.Models;
+@using DAL;
+@model List<UserVM>
+
+<div class="text-center">
+	<h1 class="display-4">The rich mans</h1>
+	<div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Cash</th>
+                    <th>Highest Bet</th>
+                    <th>Highest Win</th>
+                    <th>Total Bets Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.UserName</td>
+                        <td>@user.Cash</td>
+                        <td>@user.HighestBet</td>
+                        <td>@user.HighestWin</td>
+                        <td>@user.TotalBetsCount</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+	</div>
+</div>
