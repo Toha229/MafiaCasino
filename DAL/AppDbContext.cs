@@ -23,5 +23,7 @@ namespace DAL
         }
 
         public DbSet<User> Users { get; set; }
-    }
+        public DbSet<Reward> Rewards { get; set; }
+        public DbSet<UserRewards> UserRewards { get; set; }
+	}
 }
