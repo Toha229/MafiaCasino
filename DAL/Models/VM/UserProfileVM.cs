@@ -14,5 +14,6 @@ namespace DAL.Models.VM
 		public int HighestBet { get; set; }
 		public int HighestWin { get; set; }
 		public int TotalBetsCount { get; set; }
+		public List<RewardsVM>? Rewards { get; set; }
 	}
 }

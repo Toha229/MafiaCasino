@@ -5,12 +5,16 @@ using Microsoft.EntityFrameworkCore;
 using DAL;
 using DAL.Models;
 using MafiaCasinoWeb.Infrastructure.AutoMapper;
+using _18_E_LEARN.Web.Infrastructure.Repositoryes;
+using DAL.Initializer;
 
 var builder = WebApplication.CreateBuilder(args);
 
 ServicesConfiguration.Config(builder.Services);
 
 AutoMapperConfiguration.Config(builder.Services);
+
+RepositoryConfiguration.Config(builder.Services);
 
 var app = builder.Build();
 
@@ -53,5 +57,7 @@ app.MapControllerRoute(
 	name: "signin",
 	pattern: "Home/SignIn",
 	defaults: new { controller = "Account", action = "Login" });
+
+AppDbInitializer.Seed();
 
 app.Run();

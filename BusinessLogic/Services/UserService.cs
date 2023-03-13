@@ -2,6 +2,8 @@
 using DAL;
 using DAL.Models;
 using DAL.Models.VM;
+using DAL.Repository;
+using DAL.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
@@ -19,13 +21,15 @@ namespace BusinessLogic.Services
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly IRewardsRopository _rewardsRopository;
 
-        public UserService(IConfiguration configuration, IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager)
+		public UserService(IConfiguration configuration, IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager, IRewardsRopository rewardsRopository)
         {
             _configuration = configuration;
             _mapper = mapper;
             _userManager = userManager;
             _signInManager = signInManager;
+            _rewardsRopository = rewardsRopository;
 		}
 
 		public async Task<List<UserVM>> GetRichesAsync(int usersCount)
@@ -50,6 +54,7 @@ namespace BusinessLogic.Services
 			}
 
 			var mappedUder = _mapper.Map<User, UserProfileVM>(user);
+			mappedUder.Rewards = await _rewardsRopository.GetRewardsAsync(userId);
 
 			return new ServiceResponse
 			{
@@ -131,6 +136,7 @@ namespace BusinessLogic.Services
             var mappedUser = _mapper.Map<RegisterUserVM, User>(model);
             mappedUser.Deffault();
             var result = await _userManager.CreateAsync(mappedUser, model.Password);
+            await _rewardsRopository.SetRewardProgress(mappedUser.Id, "Civilian", 1);
             if (result.Succeeded)
             {
                 return new ServiceResponse
@@ -139,6 +145,7 @@ namespace BusinessLogic.Services
                     Message = "User successfully created.",
                 };
             }
+
 
             List<IdentityError> errorList = result.Errors.ToList();
             string errors = "";

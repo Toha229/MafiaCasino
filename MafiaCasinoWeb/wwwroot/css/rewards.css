@@ -1,0 +1,24 @@
+﻿.reward {
+    position: relative;
+    border-radius: 20px;
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    background-color: gray;
+    padding: 20px;
+    margin: 10px;
+}
+.reward-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.collected {
+    background-color: seagreen;
+}
+.reward-progress {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    font-size: x-large;
+}

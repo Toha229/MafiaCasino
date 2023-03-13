@@ -5,12 +5,13 @@
 	<div class="text-center">
 		<h1 class="display-4" style="text-shadow: 3px 3px 1px rgba(0,0,0,0.5); font-weight:400;">Profile</h1>
 	</div>
-	<link rel="stylesheet" href="~/css/profile.css"/>
+	<link rel="stylesheet" href="~/css/profile.css" asp-append-version="true"/>
 	<div class="user-profile">
 		<div class="name-container">
 			<img class="user-avatar" src="@Model.Avatar"/>
 			<h3 class="display-6 user-name">@Model.UserName</h3>
 		</div>
 		<h5>Cash: @Model.Cash</h5>
+		@Html.Partial("_RewardsPartial", Model.Rewards)
 	</div>
 </section>

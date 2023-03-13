@@ -1,0 +1,23 @@
+﻿@using DAL.Models.VM;
+@model List<RewardsVM>
+
+<div>
+	<link rel="stylesheet" href="~/css/rewards.css"/>
+	<div class="text-center">
+		<h4>Rewards:</h4>
+	</div>
+
+	<div class="reward-list">
+		@foreach (var reward in Model)
+		{
+			@*<button type="button" style="display: inline" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" 
+			data-bs-content="<div>@reward.Description</div><p>@reward.Progress/@reward.Target</p>"
+			data-bs-original-title="@reward.Name">@reward.Name</button>*@
+			<div class="@(reward.Progress >= reward.Target ? "reward collected" : "reward")">
+				<h5>@reward.Name</h5>
+				<p>@reward.Description</p>
+				<p class="reward-progress">@reward.Progress/@reward.Target</p>
+			</div>
+		}
+	</div>
+</div>

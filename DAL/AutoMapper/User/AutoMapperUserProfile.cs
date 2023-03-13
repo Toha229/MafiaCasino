@@ -12,6 +12,7 @@ namespace DAL.AutoMapper.User
             CreateMap<DAL.Models.User, RegisterUserVM>().ReverseMap();
             CreateMap<DAL.Models.User, UserVM>().ReverseMap();
             CreateMap<DAL.Models.User, UserProfileVM>().ReverseMap();
+            CreateMap<DAL.Models.Reward, RewardsVM>().ReverseMap();
 		}
     }
 }
